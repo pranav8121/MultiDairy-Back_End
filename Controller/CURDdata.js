@@ -70,9 +70,10 @@ router.post('/addDataDB', (req, res) => {
 });
 
 
-router.get('/GetTodayData/:UId/:ehours',(req,res)=>{
+router.get('/GetTodayData/:UId/:ehours/:date',(req,res)=>{
     // createdAt: ISODate("2016-02-10T07:51:08.934Z")
-    Data.find({created_on: {$gte: start, $lt: end}, "UId": req.params.UId,"ehours":req.params.ehours}, (err, docs) => {
+    console.log(req.params.date);
+    Data.find({"date":req.params.date, "UId": req.params.UId,"ehours":req.params.ehours}, (err, docs) => {
         if (docs.length>0) {
             res.json(docs);
         } else {
