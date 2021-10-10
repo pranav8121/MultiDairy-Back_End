@@ -10,6 +10,20 @@ end.setHours(23,59,59,999);
 
 
 
+router.get('/GetTodayData/:UId/:ehours/:date',(req,res)=>{
+    Data.find({"date":req.params.date, "UId": req.params.UId,"ehours":req.params.ehours}, (err, docs) => {
+        if (docs.length>0) {
+            res.json(docs);
+        } else {
+            return res.status(501).json("No Data Found !!");
+        }
+    });
+})
+
+
+
+
+
 router.get('/getallDairyData/:UId', (req, res) => {
     Data.find({ "UId": req.params.UId }, (err, docs) => {
         if (!err) {
@@ -70,17 +84,7 @@ router.post('/addDataDB', (req, res) => {
 });
 
 
-router.get('/GetTodayData/:UId/:ehours/:date',(req,res)=>{
-    // createdAt: ISODate("2016-02-10T07:51:08.934Z")
-    console.log(req.params.date);
-    Data.find({"date":req.params.date, "UId": req.params.UId,"ehours":req.params.ehours}, (err, docs) => {
-        if (docs.length>0) {
-            res.json(docs);
-        } else {
-            return res.status(501).json("No Data Found !!");
-        }
-    });
-})
+
 
 module.exports = router;
 
