@@ -9,10 +9,10 @@ var end = new Date();
 end.setHours(23,59,59,999);
 
 
-
+// Get Todays Whole Dairy Data
 router.get('/GetTodayData/:UId/:ehours/:date',(req,res)=>{
     Data.find({"date":req.params.date, "UId": req.params.UId,"ehours":req.params.ehours}, (err, docs) => {
-        if (docs.length>0) {
+        if (docs) {
             res.json(docs);
         } else {
             return res.status(501).json("No Data Found !!");
@@ -23,7 +23,7 @@ router.get('/GetTodayData/:UId/:ehours/:date',(req,res)=>{
 
 
 
-
+// Get Whole Member Data 
 router.get('/getallDairyData/:UId', (req, res) => {
     Data.find({ "UId": req.params.UId }, (err, docs) => {
         if (!err) {
@@ -34,8 +34,11 @@ router.get('/getallDairyData/:UId', (req, res) => {
     });
 });
 
+
+
+
+// Get Singel Member Data
 router.get('/getalldata/:UId/:No', (req, res) => {
-    console.log(req.params);
     Data.find({ "UId": req.params.UId, "No": req.params.No }, (err, docs) => {
         if (docs) {
             res.json(docs);
@@ -44,8 +47,11 @@ router.get('/getalldata/:UId/:No', (req, res) => {
         }
     });
 });
-;
 
+
+
+
+//Post Data
 router.post('/addDataDB', (req, res) => {
     //  fast2sms.sendMessage({
     //     authorization: 'mANeQLvag9lUk1JWYtcXq7M2wShfupjdVIG8x3rODs0Bn5iHTE9ErSGZF76wCRY3telu4iKHQx0UMkhL',
@@ -86,27 +92,16 @@ router.post('/addDataDB', (req, res) => {
 
 
 
+// get only 10 data
+router.get('/GetBillData/:UId/:No/:from/:to',(req,res)=>{
+    Data.find({ "UId": req.params.UId, "No": req.params.No, date : { $gte :req.params.from, $lt :req.params.to} }, (err, docs) => {
+        if (docs) {
+            res.json(docs);
+        } else {
+            return res.status(501).json("User Data Not Found !!");
+        }
+    });
+})
+
+
 module.exports = router;
-
-
-
-// router.get('/getlastdata/:UId/:Name/:type', (req, res) => {
-//     Data.findOne({ "UId": req.params.UId, "Name": req.params.Name,"type":req.params.type,
-// }, (err, docs) => {
-//         if (!err) {
-//             res.json(docs);
-//         } else {
-//             return res.status(501).json("User Data Not Found !!");
-//         }
-//     });
-//     // Data.findOne(
-//     //     {"UId": req.params.UId, "Name": req.params.Name,"type":req.params.type},
-//     //     { sort: { _id: -1 } },
-//     //     (err, data) => {
-//     //         if (!err) {
-//     //                     res.json(docs);
-//     //                 } else {
-//     //                     return res.status(501).json("User Data Not Found !!");
-//     //                 }},
-//     //   );
-// })
