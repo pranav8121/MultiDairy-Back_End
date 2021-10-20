@@ -17,7 +17,6 @@ router.get('/findBill/:UId/:inv_no/:No', (req, res) => {
 
 
 router.post('/postBill', (req, res) => {
-    console.log(req.body);
     var newBill = Bill({
         No:req.body.No,
         adv:req.body.adv ,
