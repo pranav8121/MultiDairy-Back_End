@@ -39,7 +39,7 @@ router.get('/getallMem/:UId', (req, res) => {
         if (!err) {
             res.json(docs);
         } else {
-            return res.status(501).json("Members Not Found !!");
+            return res.status(501).json("Slow Internet Connection Please Refresh Page");
         }
     });
 });

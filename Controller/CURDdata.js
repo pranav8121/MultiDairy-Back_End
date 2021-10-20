@@ -2,12 +2,6 @@ const express = require('express');
 var router = express.Router();
 
 var { Data } = require("../Model/data");
-var start = new Date();
-start.setHours(0,0,0,0);
-
-var end = new Date();
-end.setHours(23,59,59,999);
-
 
 // Get Todays Whole Dairy Data
 router.get('/GetTodayData/:UId/:ehours/:date',(req,res)=>{
@@ -80,7 +74,7 @@ router.post('/addDataDB', (req, res) => {
     });
     memData.save((err, doc) => {
         if (!err) {
-            res.json({ msg: "data Added Successfully", data: doc })
+            res.json({ msg: "Data Added Successfully", data: doc })
         }
         else {
             return res.status(501).json("Error in Saving Data Please Check You Internet Connection or Refresh!!");
@@ -95,7 +89,7 @@ router.post('/addDataDB', (req, res) => {
 // get only 10 data
 router.get('/GetBillData/:UId/:No/:from/:to',(req,res)=>{
     Data.find({ "UId": req.params.UId, "No": req.params.No, date : { $gte :req.params.from, $lt :req.params.to} }, (err, docs) => {
-        if (docs) {
+        if (docs.length>0) {
             res.json(docs);
         } else {
             return res.status(501).json("User Data Not Found !!");
