@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 var Bill = mongoose.model('Bill', {
     Name: { type: String },
     No: { type: Number },
+    totalmilk:{ type: Number },
     totalRate: { type: Number },
     cutting: { type: Number },
     subAmount: { type: Number },

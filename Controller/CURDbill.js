@@ -27,6 +27,7 @@ router.post('/postBill', (req, res) => {
         inv_no: req.body.inv_no,
         from: req.body.from,
         to: req.body.to,
+        totalmilk:req.body.totalMilk,
         totalRate: req.body.totalRate,
         cutting: req.body.cutting,
         subAmount: req.body.subAmount,
