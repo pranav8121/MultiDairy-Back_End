@@ -17,6 +17,7 @@ router.get('/GetTodayData/:UId/:ehours/:date',(req,res)=>{
 
 
 
+
 // Get Whole Member Data 
 router.get('/getallDairyData/:UId', (req, res) => {
     Data.find({ "UId": req.params.UId }, (err, docs) => {

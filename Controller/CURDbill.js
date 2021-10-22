@@ -43,4 +43,18 @@ router.post('/postBill', (req, res) => {
 })
 
 
+
+// Payment Register
+router.post('/PaymentBill', (req, res) => {
+    Bill.find({ "UId": req.body.UId, "from": req.body.from,"to":req.body.to }, (err, doc) => {
+        if (doc.length > 0) {
+            res.json(doc);
+        } else {
+            return res.status(501).json("Bill's Not Generated!!");
+        }
+    });
+});
+
+
+
 module.exports = router;
