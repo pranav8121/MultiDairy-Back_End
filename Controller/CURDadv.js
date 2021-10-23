@@ -4,7 +4,7 @@ var router = express.Router();
 var { Adv } = require("../Model/advance");
 
 
-router.post('/postBill', (req, res) => {
+router.post('/postEntry', (req, res) => {
     var entry = Adv({
         type: req.body.type,
         addAmount: req.body.addAmount,
