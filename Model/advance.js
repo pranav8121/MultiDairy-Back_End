@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-var Adv = mongoose.model('Bill', {
+var Adv = mongoose.model('AdvSupply', {
     type: { type: String },
     addAmount: { type: Number },
     cutAmount: { type: Number },
