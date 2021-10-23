@@ -8,6 +8,7 @@ var CURDlogin=require('./Controller/CURDlogin');
 var CURDmember=require('./Controller/CURDmember');
 var CURDdata=require('./Controller/CURDdata');
 var CURDbill=require('./Controller/CURDbill');
+var CURDadv=require('./Controller/CURDadv');
 
 
 
@@ -24,6 +25,7 @@ app.use(function (req, res, next) {
 app.use(bodyParser.json());
 app.use(cors());
 app.use('/',CURDlogin);
+app.use('/',CURDadv);
 app.use('/',CURDmember);
 app.use('/',CURDdata);
 app.use('/',CURDbill);

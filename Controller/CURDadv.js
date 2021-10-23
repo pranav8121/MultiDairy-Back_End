@@ -29,7 +29,7 @@ router.post('/postEntry', (req, res) => {
 
 
 router.post('/GetEntry', (req, res) => {
-    Bill.find({ "UId": req.body.UId, "No": req.body.No, "type": req.body.type }, (err, doc) => {
+    Adv.find({ "UId": req.body.UId, "No": req.body.No, "type": req.body.type }, (err, doc) => {
         if (doc.length > 0) {
             res.json(doc);
         } else {
