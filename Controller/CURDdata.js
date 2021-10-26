@@ -86,7 +86,6 @@ router.post('/addDataDB', (req, res) => {
 
 
 
-
 // get only 10 data
 router.get('/GetBillData/:UId/:No/:from/:to',(req,res)=>{
     Data.find({ "UId": req.params.UId, "No": req.params.No, date : { $gte :req.params.from, $lt :req.params.to} }, (err, docs) => {
@@ -96,6 +95,37 @@ router.get('/GetBillData/:UId/:No/:from/:to',(req,res)=>{
             return res.status(501).json("User Data Not Found !!");
         }
     });
+})
+
+
+router.put('/EditDataDB/:id', (req, res) =>{
+    Data.findById(req.params.id,function (err, doc){
+        if(err){
+            return res.status(501).json("Cannont Find Data !!");
+        }
+        else{
+            doc.Name= req.body.Name,
+            doc.No=req.body.No,
+            doc.date= req.body.date,
+            doc.time= req.body.time,
+            doc.milk= req.body.milk,
+            doc.fat= req.body.fat,
+            doc.snf= req.body.snf,
+            doc.rate= req.body.rate,
+            doc.t_rate= req.body.t_rate,
+            doc.hours= req.body.hours,
+            doc.ehours=req.body.ehours,
+            doc.type= req.body.type,
+            doc.UId= req.body.UId
+            console.log(doc);
+        //     doc.save().then(doc => {
+        //         res.json({ "msg": 'Update complete', data: doc });
+        //     })
+        //     .catch(err => {
+        //         res.status(501).send("unable to update the database");
+        //   });
+        }
+    })
 })
 
 
