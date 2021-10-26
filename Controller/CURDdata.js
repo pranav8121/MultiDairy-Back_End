@@ -117,13 +117,20 @@ router.put('/EditDataDB/:id', (req, res) =>{
             doc.ehours=req.body.ehours,
             doc.type= req.body.type,
             doc.UId= req.body.UId
-            console.log(doc);
         //     doc.save().then(doc => {
         //         res.json({ "msg": 'Update complete', data: doc });
         //     })
         //     .catch(err => {
         //         res.status(501).send("unable to update the database");
         //   });
+        doc.save((err, doc) => {
+            if (!err) {
+                res.json({ msg: "Data Updated Successfully", data: doc })
+            }
+            else {
+                return res.status(501).json("Error in Updating Data");
+            }
+        });
         }
     })
 })
