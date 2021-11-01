@@ -136,4 +136,23 @@ router.put('/EditDataDB/:id', (req, res) =>{
 })
 
 
+router.post('/DairyOneDayTotal', (req, res) => {
+    var totalmilk=0
+    var totalrate=0
+    var rate=0
+    Data.find({ "UId": req.body.UId, "ehours": req.body.ehours,"date":req.body.date,"type": req.body.etype }, (err, doc) => {
+        if (doc.length > 0) {
+            doc.forEach((ele) => {
+                totalmilk=totalmilk+parseFloat(ele.milk)
+                totalrate=totalrate+parseFloat(ele.t_rate)
+                rate=rate+parseFloat(ele.rate)
+            });
+            res.json({TotalMilk:totalmilk.toFixed(2),TotalRate:totalrate.toFixed(2),Rate:rate.toFixed(2)});
+        } else {
+            return res.status(501).json("Entry Not Found!!");
+        }
+    });
+});
+
+
 module.exports = router;

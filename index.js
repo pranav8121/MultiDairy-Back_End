@@ -9,6 +9,7 @@ var CURDmember=require('./Controller/CURDmember');
 var CURDdata=require('./Controller/CURDdata');
 var CURDbill=require('./Controller/CURDbill');
 var CURDadv=require('./Controller/CURDadv');
+var CURDdairy=require('./Controller/CURDdairy');
 
 
 
@@ -26,5 +27,6 @@ app.use('/',CURDadv);
 app.use('/',CURDmember);
 app.use('/',CURDdata);
 app.use('/',CURDbill);
+app.use('/',CURDdairy)
 
 app.listen(process.env.PORT || 3000, () => console.log('server started at http://localhost:3000/'));
