@@ -33,7 +33,24 @@ router.post('/GetEntry', (req, res) => {
         if (doc.length > 0) {
             res.json(doc);
         } else {
-            return res.status(501).json("No ENtries Yet!!");
+            return res.status(501).json("No Entries Yet!!");
+        }
+    });
+});
+
+router.post('/GetSupplyBalance', (req, res) => {
+    var add = 0
+    var cut = 0
+    Adv.find({ "UId": req.body.UId, "No": req.body.No, "type": 'supply' }, (err, doc) => {
+        if (doc.length>0) {
+            doc.forEach(ele => {
+                if (ele.addAmount) { add = add + parseFloat(ele.addAmount) }
+                if (ele.cutAmount) { cut = cut + parseFloat(ele.cutAmount) }
+            });
+            var balance = add - cut
+            res.json(balance);
+        } else {
+            return res.status(501).json("No Entries Yet!!");
         }
     });
 });
