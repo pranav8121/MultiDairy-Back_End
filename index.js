@@ -10,6 +10,7 @@ var CURDdata=require('./Controller/CURDdata');
 var CURDbill=require('./Controller/CURDbill');
 var CURDadv=require('./Controller/CURDadv');
 var CURDdairy=require('./Controller/CURDdairy');
+var CURDsales=require('./Controller/CURDsales');
 
 
 
@@ -19,7 +20,6 @@ app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
        next();
  });
-
 app.use(bodyParser.json());
 app.use(cors());
 app.use('/',CURDlogin);
@@ -28,5 +28,6 @@ app.use('/',CURDmember);
 app.use('/',CURDdata);
 app.use('/',CURDbill);
 app.use('/',CURDdairy)
+app.use('/',CURDsales)
 
 app.listen(process.env.PORT || 3000, () => console.log('server started at http://localhost:3000/'));
