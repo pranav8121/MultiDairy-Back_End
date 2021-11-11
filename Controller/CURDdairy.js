@@ -16,7 +16,7 @@ router.get('/GetDairyReg/:UId', (req, res) => {
 });
 
 router.post('/CheckDairyReg', (req, res) => {
-    DairyReg.find({ "UId": req.body.UId, "date": req.body.date, "etype": req.body.etype, "ehours": req.body.ehours }, (err, doc) => {
+    DairyReg.find({ "UId": req.body.UId, "date": req.body.date, "etype": [req.body.etype,req.body.etype2], "ehours": req.body.ehours }, (err, doc) => {
         if (doc.length == 0) {
             res.json("Valid");
         } else {
@@ -40,6 +40,8 @@ router.post('/AddDairyReg', (req, res) => {
         totalRate: req.body.totalRate,
         dairyMilk: req.body.dairyMilk,
         dairyTotalRate: req.body.dairyTotalRate,
+        salesTotalRate:req.body.salesTotalRate,
+        salesTotalMilk:req.body.salesTotalMilk,
         dairyRate: req.body.dairyRate,
         extraMilk: req.body.extraMilk,
         extraTotalRate: req.body.extraTotalRate,

@@ -140,7 +140,7 @@ router.post('/DairyOneDayTotal', (req, res) => {
     var totalmilk=0
     var totalrate=0
     var rate=0
-    Data.find({ "UId": req.body.UId, "ehours": req.body.ehours,"date":req.body.date,"type": req.body.etype }, (err, doc) => {
+    Data.find({ "UId": req.body.UId, "ehours": req.body.ehours,"date":req.body.date,"type": [req.body.etype,req.body.etype2]}, (err, doc) => {
         if (doc.length > 0) {
             doc.forEach((ele) => {
                 totalmilk=totalmilk+parseFloat(ele.milk)

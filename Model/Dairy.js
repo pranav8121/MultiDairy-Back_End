@@ -15,6 +15,8 @@ var DairyReg = mongoose.model('DairyReg', {
     "totalRate":{type:Number},
     "dairyMilk":{type:Number},
     "dairyTotalRate":{type:Number},
+    "salesTotalRate":{type:Number},
+    "salesTotalMilk":{type:Number},
     "dairyRate":{type:Number},
     "extraMilk":{type:Number},
     "extraTotalRate":{type:Number},
