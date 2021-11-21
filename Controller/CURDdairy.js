@@ -6,7 +6,7 @@ var { DairyReg } = require("../Model/Dairy");
 router.get('/GetDairyReg/:UId', (req, res) => {
 
     DairyReg.find({ "UId": req.params.UId }, (err, doc) => {
-        if (doc.length > 0) {
+        if (doc) {
             res.json(doc)
         }
         else {

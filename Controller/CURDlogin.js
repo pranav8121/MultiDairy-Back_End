@@ -47,6 +47,7 @@ router.post('/addCred', (req, res) => {
         Name: req.body.Name
     });
     newUser.save((err, doc) => {
+        console.log(doc);
         if (!err) {
             res.json({ msg: "data Added Successfully", data: doc })
         }

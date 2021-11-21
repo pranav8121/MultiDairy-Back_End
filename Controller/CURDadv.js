@@ -49,6 +49,9 @@ router.post('/GetSupplyBalance', (req, res) => {
             });
             var balance = add - cut
             res.json(balance);
+        }else if(doc.length==0){
+            var balance=0
+            res.json(balance);
         } else {
             return res.status(501).json("No Entries Yet!!");
         }
