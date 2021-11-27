@@ -14,6 +14,7 @@ router.post('/postEntry', (req, res) => {
         rate: req.body.rate,
         bag: req.body.bag,
         Name: req.body.Name,
+        supType:req.body.supType,
         UId: req.body.UId
     });
     entry.save((err, doc) => {

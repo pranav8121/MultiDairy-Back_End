@@ -9,6 +9,7 @@ var Adv = mongoose.model('AdvSupply', {
     rate: { type: Number },
     bag: { type: Number },
     Name: { type: String },
+    supType:{type: Number},
     UId: { type: String }
 });
 module.exports = { Adv };
