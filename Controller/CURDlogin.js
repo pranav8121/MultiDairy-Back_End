@@ -14,7 +14,7 @@ router.get('/getCred/:username/:password', (req, res) => {
                     if (result) {
                         m_count = result.length
                         var token = "JWTtoken";
-                        return res.json({ message: "Login SuccessFull", Name: doc.Name, Id: doc._id, token: token, token, Member_count: m_count });
+                        return res.json({ message: "Login SuccessFull", Name: doc.Name, Id: doc._id, token: token, token, Member_count: m_count,multi:doc.multi });
                     }
                 });
 
@@ -44,7 +44,8 @@ router.post('/addCred', (req, res) => {
     var newUser = new User({
         password: req.body.password,
         username: req.body.username,
-        Name: req.body.Name
+        Name: req.body.Name,
+        multi:req.body,multi
     });
     newUser.save((err, doc) => {
         console.log(doc);
