@@ -3,6 +3,8 @@ var router = express.Router();
 
 var { User } = require("../Model/login");
 var { member } = require("../Model/member");
+var {MemberDetails} = require("../Model/memLogin")
+
 
 router.get('/getCred/:username/:password', (req, res) => {
     var m_count
@@ -14,7 +16,33 @@ router.get('/getCred/:username/:password', (req, res) => {
                     if (result) {
                         m_count = result.length
                         var token = "JWTtoken";
-                        return res.json({ message: "Login SuccessFull", Name: doc.Name, Id: doc._id, token: token, token, Member_count: m_count,multi:doc.multi });
+                        return res.json({ message: "Login SuccessFull", Name: doc.Name, Id: doc._id, token: token, token, Member_count: m_count,multi:doc.multi,auth:"Admin" });
+                    }
+                });
+
+
+            } else {
+                return res.status(501).json({ message: "Invalid Username or password !!" });
+            }
+        } else {
+            return res.status(501).json({ message: "Username does not exist !!" });
+        }
+    });
+});
+
+router.get('/getMemCred/:username/:password', (req, res) => {
+    console.log(req.params.username,req.params.password);
+    var m_count
+    MemberDetails.findOne({ 'username': req.params.username }, (err, doc) => {
+        console.log(doc);
+        if (doc) {
+            if (doc.password == req.params.password) {
+
+                member.find({ "UId": doc.Id }, (err, result) => {
+                    if (result) {
+                        m_count = result.length
+                        var token = "JWTtoken";
+                        return res.json({ message: "Login SuccessFull", Name: doc.Name, Id: doc.Id, token: token, token, Member_count: m_count,multi:doc.multi,auth:"Member"});
                     }
                 });
 
